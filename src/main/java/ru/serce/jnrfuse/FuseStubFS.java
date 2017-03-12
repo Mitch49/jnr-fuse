@@ -254,7 +254,7 @@ public class FuseStubFS extends AbstractFuseFS {
         // TODO.
         // Some problem in implementation, but it not enabling by default
         int res;
-        int size = (int) libFuse.fuse_buf_size(buf);
+        int size = (int) libFuse.fsp_fuse_buf_size(buf);
         FuseBuf flatbuf;
         FuseBufvec tmp = new FuseBufvec(Runtime.getSystemRuntime());
         long adr = MemoryIO.getInstance().allocateMemory(Struct.size(tmp), false);
@@ -271,7 +271,7 @@ public class FuseStubFS extends AbstractFuseFS {
                 return res;
             }
             tmp.buf.mem.set(mem);
-            res = (int) libFuse.fuse_buf_copy(tmp, buf, 0);
+            res = (int) libFuse.fsp_fuse_buf_copy(tmp, buf, 0);
             if (res <= 0) {
                 MemoryIO.getInstance().freeMemory(adr);
                 MemoryIO.getInstance().freeMemory(mem);

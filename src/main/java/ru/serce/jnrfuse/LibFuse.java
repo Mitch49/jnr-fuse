@@ -16,15 +16,15 @@ import ru.serce.jnrfuse.struct.FusePollhandle;
 public interface LibFuse {
 
     @size_t
-    long fuse_buf_size(FuseBufvec bufv);
+    long fsp_fuse_buf_size(FuseBufvec bufv);
 
     @ssize_t
-    long fuse_buf_copy(FuseBufvec dstv, FuseBufvec srcv, int flags);
+    long fsp_fuse_buf_copy(FuseBufvec dstv, FuseBufvec srcv, int flags);
 
     // poll
-    void fuse_pollhandle_destroy(FusePollhandle ph);
+    void fsp_fuse_pollhandle_destroy(FusePollhandle ph);
 
-    int fuse_notify_poll(FusePollhandle ph);
+    int fsp_fuse_notify_poll(FusePollhandle ph);
 
     /**
      * Main function of FUSE.
@@ -44,5 +44,5 @@ public interface LibFuse {
      * @param user_data user data supplied in the context during the init() method
      * @return 0 on success, nonzero on failure
      */
-    int fuse_main_real(int argc, String[] argv, FuseOperations op, int op_size, Pointer user_data);
+    int fsp_fuse_main_real(int argc, String[] argv, FuseOperations op, int op_size, Pointer user_data);
 }

@@ -47,7 +47,7 @@ public abstract class AbstractFuseFS implements FuseFS {
 
     public AbstractFuseFS() {
         LibraryLoader<LibFuse> loader = LibraryLoader.create(LibFuse.class);
-        libFuse = loader.load("libfuse.so.2");
+        libFuse = loader.load("C:\\Program Files (x86)\\WinFsp\\bin\\winfsp-x86.dll");
 
         Runtime runtime = Runtime.getSystemRuntime();
         fuseOperations = new FuseOperations(runtime);
@@ -251,11 +251,11 @@ public abstract class AbstractFuseFS implements FuseFS {
     }
 
     private int execMount(String[] arg) {
-        return libFuse.fuse_main_real(arg.length, arg, fuseOperations, Struct.size(fuseOperations), null);
+        return libFuse.fsp_fuse_main_real(arg.length, arg, fuseOperations, Struct.size(fuseOperations), null);
     }
 
     @Override
-    public void umount() {
+    public void umount() {/*
         if (!mounted.get()) {
             return;
         }
@@ -264,7 +264,7 @@ public abstract class AbstractFuseFS implements FuseFS {
             mounted.set(false);
         } catch (IOException e) {
             throw new FuseException("Unable to umount FS", e);
-        }
+        }*/
     }
 
     protected String getFSName() {

@@ -80,7 +80,7 @@ public class HelloFuse extends FuseStubFS {
     public static void main(String[] args) {
         HelloFuse stub = new HelloFuse();
         try {
-            stub.mount(Paths.get("/tmp/mnt"), true, true);
+            stub.mount(Paths.get("X:"), true, true);
         } finally {
             stub.umount();
         }
