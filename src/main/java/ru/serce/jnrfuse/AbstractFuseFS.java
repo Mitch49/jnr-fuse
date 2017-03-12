@@ -217,10 +217,10 @@ public abstract class AbstractFuseFS implements FuseFS {
         }
 
         final String[] args = arg;
-        try {
+        try {/*
             if (!Files.isDirectory(mountPoint)) {
                 throw new FuseException("Mount point should be directory");
-            }
+            }*/
             if (SecurityUtils.canHandleShutdownHooks()) {
                 java.lang.Runtime.getRuntime().addShutdownHook(new Thread(this::umount));
             }
